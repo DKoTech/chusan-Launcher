@@ -1,0 +1,8 @@
+{
+    "version": "1.0.0",
+    "startscript": "F:\\Chuni\\bin\\start.bat",
+    "needbrokenithm": true,
+    "brokenithm": "F:\\Chuni\\bin\\ ÷Ã®≈‰÷√\\Brokenithm For Android\\start_brokenithm.bat",
+    "icon": ".\\Configure\\chusanLauncher\\clicon.ico",
+    "bin": "F:\\Chuni\\bin\\"
+}
