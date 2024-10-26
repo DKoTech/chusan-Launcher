@@ -31,7 +31,7 @@ Icon can be empty. ('icon')
 
 ## Start
 
-After start it, you need install dotnet >= 6.0 because it using dotnet library.
+Before start it, you need install dotnet >= 6.0 because it using dotnet library.
 
 Double click <strong>start.bat</strong> to start.
 
