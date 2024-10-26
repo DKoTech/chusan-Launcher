@@ -55,10 +55,10 @@ Write-Log "Starting Game." 1
 #    "bin": "F:\\Chuni\\bin\\"
 #}
 
-$yh = '"'
-Start-Process -FilePath cmd.exe -ArgumentList "/k $($yh)$($cthis.startscript)$($yh)"
+$quotation_marks = '"'
+Start-Process -FilePath cmd.exe -ArgumentList "/k $($quotation_marks)$($cthis.startscript)$($quotation_marks)"
 if ($cthis.needbrokenithm) {
-    Start-Process -FilePath cmd.exe -ArgumentList "/k $($yh)$($cthis.brokenithm)$($yh)"
+    Start-Process -FilePath cmd.exe -ArgumentList "/k $($quotation_marks)$($cthis.brokenithm)$($quotation_marks)"
 }
 
 Write-Log "Game Start." 1

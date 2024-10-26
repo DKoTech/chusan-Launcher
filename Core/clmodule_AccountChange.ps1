@@ -105,7 +105,15 @@ $button.Add_Click({
         $aime = Get-Content -Path "./Configure/aime_cards/$($list.SelectedItem.ToString())" -Force
         Set-Content -Path "./Configure/aime_cards/selected_aime.txt" -Value $aime
         Write-Log "Aime selected: $($aime)" 1
-        Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -File .\Core\clmodule_SegatoolsChange.ps1" -NoNewWindow
+        if ($cthis.needChangeSegatools -eq $true){
+            Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -File .\Core\clmodule_SegatoolsChange.ps1" -NoNewWindow
+        } else {
+            $quotation_marks = '"'
+            Start-Process -FilePath cmd.exe -ArgumentList "/k $($quotation_marks)$($cthis.startscript)$($quotation_marks)"
+            if ($cthis.needbrokenithm) {
+                Start-Process -FilePath cmd.exe -ArgumentList "/k $($quotation_marks)$($cthis.brokenithm)$($quotation_marks)"
+            }
+        }
         $window.Close()
     }
 })

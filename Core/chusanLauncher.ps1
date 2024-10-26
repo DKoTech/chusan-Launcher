@@ -9,10 +9,7 @@ $app=[System.Windows.Forms.Application]
 $window = New-Object System.Windows.Forms.Form
 $window.Text = "CHUNITHM NEW!! - Luminous PLUS - Launcher"
 $window.AutoSize = $true
-$window.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("./Configure/chusanLauncher/clicon.ico")
 #endregion
-
-# ICO 已经准备好了，在 ./clicon.ico.
 
 #region CommandOutput
 Clear-Host
@@ -50,6 +47,10 @@ $scriptconfig = Get-Content -Path "./Configure/chusanLauncher/chusanconfig.clcon
 $cthis = ConvertFrom-Json -InputObject $scriptconfig # 转换 JSON
 #endregion
 
+if ($cthis.icon -ine ""){
+    $window.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon($cthis.icon)
+}
+
 Write-Output " "
 Write-Log "Librarys include." 1
 Write-Log "chusanLauncher Config Read." 1
@@ -79,7 +80,15 @@ $launch.ForeColor = "White"
 
 $launch_Click = {
     # 启动 ./clmodule_AccountChange.ps1 并关闭该窗口
-    Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -File .\Core\clmodule_AccountChange.ps1" -NoNewWindow
+    if ($cthis.needChangeUser -eq $true){
+        Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -File .\Core\clmodule_AccountChange.ps1" -NoNewWindow
+    } else {
+        $quotation_marks = '"'
+        Start-Process -FilePath cmd.exe -ArgumentList "/k $($quotation_marks)$($cthis.startscript)$($quotation_marks)"
+        if ($cthis.needbrokenithm) {
+            Start-Process -FilePath cmd.exe -ArgumentList "/k $($quotation_marks)$($cthis.brokenithm)$($quotation_marks)"
+        }
+    }
     $window.Close()
 } # 启动事件，单独分开来写，方便调试
 
