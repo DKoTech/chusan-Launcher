@@ -35,5 +35,5 @@ Before start it, you need install dotnet >= 6.0 because it using dotnet library.
 
 Double click <strong>start.bat</strong> to start.
 
-## Tips for you.
+## Tip for you.
 This launcher has not yet been released. Therefore, you may encounter problems. If you encounter problems, please file an issue.
